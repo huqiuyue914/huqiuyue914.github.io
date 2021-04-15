@@ -23,7 +23,7 @@
 <meta property="og:description" content="花了一天时间，终于将“正则表达式匹配”弄懂了。始终纠结的问题是，在当前位置为 * 且 s[i-1]&#x3D;p[j-2] 的情况下，为什么 dp[i][j]&#x3D;dp[i-1][j], 而不是 dp[i][j]&#x3D;dp[i-1][j-1] 或 dp[i][j]&#x3D;dp[i-1][j-2]？ 纠结了一天，最后终于绕出来了，因为 * 可以改变前面一个字母的个数，即使 dp[i-1][j-2] 或 dp[i-1][j-">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-04-15T05:20:11.000Z">
-<meta property="article:modified_time" content="2021-04-15T05:20:11.697Z">
+<meta property="article:modified_time" content="2021-04-15T10:46:00.682Z">
 <meta property="article:author" content="hqyue">
 <meta name="twitter:card" content="summary">
   
@@ -89,7 +89,7 @@
 
     <div class="entry-content">
       
-        <p>花了一天时间，终于将“正则表达式匹配”弄懂了。始终纠结的问题是，在当前位置为 * 且 s[i-1]=p[j-2] 的情况下，为什么 dp[i][j]=dp[i-1][j], 而不是 dp[i][j]=dp[i-1][j-1] 或 dp[i][j]=dp[i-1][j-2]？ 纠结了一天，最后终于绕出来了，因为 * 可以改变前面一个字母的个数，即使 dp[i-1][j-2] 或 dp[i-1][j-1] 不匹配，但是加入 * 后，就可能使得 dp[i-1][j] 匹配，如果根据 dp[i][j]=dp[i-1][j-1] 或 dp[i][j]=dp[i-1][j-2] 来决定 dp[i-1][j] 的匹配情况，就可能将本应匹配的情况变成不匹配，所以要根据 dp[i-1][j] 的匹配情况来决定 dp[i][j]。</p>
+        <p>花了一天时间，终于将“正则表达式匹配”弄懂了。始终纠结的问题是，在当前位置为 * 且 s[i-1]=p[j-2] 的情况下，为什么 dp[i][j]=dp[i-1][j], 而不是 dp[i][j]=dp[i-1][j-1] 或 dp[i][j]=dp[i-1][j-2]？ 纠结了一天，最后终于绕出来了，因为 * 可以改变前面一个字母的个数，即使 dp[i-1][j-2] 或 dp[i-1][j-1] 不匹配，但是加入 * 后，就可能使得 dp[i-1][j] 匹配，如果根据 dp[i][j]=dp[i-1][j-1] 或 dp[i][j]=dp[i-1][j-2] 来决定 dp[i-1][j] 的匹配情况，就可能将本应匹配的情况变成不匹配，所以要根据 dp[i-1][j] 的匹配情况来决定 dp[i][j]。<br>代码 Java<br>public boolean isMatch(String s, String p) {<br>        int slen=s.length();<br>        int plen=p.length();<br>        boolean dp[][] = new boolean[slen+1][plen+1];<br>        dp[0][0]=true;<br>        for(int i=1;i&lt;=plen;i++){<br>            if(p.charAt(i-1)==’<em>‘){<br>                dp[0][i]=dp[0][i-2];<br>            }<br>        }<br>        for(int i=1;i&lt;=slen;i++){<br>            for(int j=1;j&lt;=plen;j++){<br>                if(p.charAt(j-1)==s.charAt(i-1)||p.charAt(j-1)==’.’){<br>                    dp[i][j]=dp[i-1][j-1];<br>                }<br>                else if(p.charAt(j-1)==’</em>‘){<br>                    if(p.charAt(j-2)==s.charAt(i-1)||p.charAt(j-2)==’.’){<br>                        dp[i][j]=dp[i-1][j]||dp[i][j-2];<br>                    }<br>                    else{<br>                            dp[i][j]=dp[i][j-2];<br>                        }<br>                    }<br>                }<br>            }<br>        return dp[slen][plen];<br>    }</p>
 
       
     </div><!-- .entry-content -->
