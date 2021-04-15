@@ -13,13 +13,13 @@
   
   
   
-  <title>正则表达式匹配 | Hexo</title>
+  <title>正则表达式匹配 | HQY</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="花了一天时间，终于将“正则表达式匹配”弄懂了。始终纠结的问题是，在当前位置为 * 且 s[i-1]&#x3D;p[j-2] 的情况下，为什么 dp[i][j]&#x3D;dp[i-1][j], 而不是 dp[i][j]&#x3D;dp[i-1][j-1] 或 dp[i][j]&#x3D;dp[i-1][j-2]？ 纠结了一天，最后终于绕出来了，因为 * 可以改变前面一个字母的个数，即使 dp[i-1][j-2] 或 dp[i-1][j-">
 <meta property="og:type" content="article">
 <meta property="og:title" content="正则表达式匹配">
 <meta property="og:url" content="https://huqiuyue914.github.io/2021/04/15/a/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="HQY">
 <meta property="og:description" content="花了一天时间，终于将“正则表达式匹配”弄懂了。始终纠结的问题是，在当前位置为 * 且 s[i-1]&#x3D;p[j-2] 的情况下，为什么 dp[i][j]&#x3D;dp[i-1][j], 而不是 dp[i][j]&#x3D;dp[i-1][j-1] 或 dp[i][j]&#x3D;dp[i-1][j-2]？ 纠结了一天，最后终于绕出来了，因为 * 可以改变前面一个字母的个数，即使 dp[i-1][j-2] 或 dp[i-1][j-">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-04-15T05:20:11.000Z">
@@ -44,7 +44,7 @@
       <header id="masthead" class="site-header" role="banner">
     <hgroup>
       <h1 class="site-title">
-        <a href="/" title="Hexo" rel="home">Hexo</a>
+        <a href="/" title="HQY" rel="home">HQY</a>
       </h1>
       
         <h2 class="site-description hitokoto"></h2>
